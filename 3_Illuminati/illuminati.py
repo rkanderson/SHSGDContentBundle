@@ -9,6 +9,7 @@ pygame.init()
 
 #Some colors
 BLACK = (0,0,0)
+WHITE = (255, 255, 255)
 
 FPS=10 #Really slow FPS in this one...
 FPSCLOCK=pygame.time.Clock()
@@ -47,6 +48,7 @@ class Game:
 		self.illuminati_rect = self.illuminati_img.get_rect()
 		self.illuminati_rect.centerx = self.center_of_screen[0]
 		self.illuminati_rect.centery = self.center_of_screen[1]
+		self.key_pressed=False
 
 		# Loads and plays music upon initialization
 		pygame.mixer.music.load("illuminati_confirmed.mp3")
@@ -61,7 +63,10 @@ class Game:
 		# Check events
 		for event in events:
 			if event.type == KEYDOWN:
+				self.key_pressed=True
 				self.intervention_sound.play()
+			elif event.type == KEYUP: self.key_pressed=False
+
 
 		# Update the triangle
 		self.size+=2
@@ -75,6 +80,7 @@ class Game:
 		"""Draws itself on given screen."""
 		screen.fill(BLACK) #Clear screen
 		screen.blit(self.illuminati_img, self.illuminati_rect.topleft)
+		if self.key_pressed: screen.fill(WHITE) # The white flash that happens when u press a key.
 		pygame.display.update() #updates pygame display. CRUCIAL to see changes on screen!
 
 
