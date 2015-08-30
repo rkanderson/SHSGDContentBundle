@@ -42,9 +42,9 @@ class Game:
 	def __init__(self):
 		"""Initializes a new Game object."""
 		self.center_of_screen = (screen_dimensions[0]/2, screen_dimensions[1]/2)
-		self.size = 10
+		self.size = 10.0
 		self.illuminati_img_org = pygame.image.load("illuminati.png").convert_alpha()
-		self.illuminati_img=pygame.transform.scale(self.illuminati_img_org, (self.size, self.size))
+		self.illuminati_img=pygame.transform.scale(self.illuminati_img_org, (int(self.size), int(self.size)))
 		self.illuminati_rect = self.illuminati_img.get_rect()
 		self.illuminati_rect.centerx = self.center_of_screen[0]
 		self.illuminati_rect.centery = self.center_of_screen[1]
@@ -69,8 +69,9 @@ class Game:
 
 
 		# Update the triangle
-		self.size+=2
-		self.illuminati_img=pygame.transform.scale(self.illuminati_img_org, (self.size, self.size))
+		self.size=self.size*1.01
+
+		self.illuminati_img=pygame.transform.scale(self.illuminati_img_org, (int(self.size), int(self.size)))
 		self.illuminati_rect.width=self.size
 		self.illuminati_rect.height=self.size
 		self.illuminati_rect.centerx = self.center_of_screen[0]
