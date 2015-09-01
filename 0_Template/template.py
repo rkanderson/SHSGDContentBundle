@@ -1,5 +1,5 @@
 
-# Copyright Yourname 2015
+# (c) 2015-2016 Your Name All Rights Reserved
 
 import pygame
 from pygame.locals import *
