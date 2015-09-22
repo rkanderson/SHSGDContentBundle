@@ -70,16 +70,14 @@ class Enemy:
 
 class Normal(Enemy):
 	def __init__(self, game, pos):
-		surface = pygame.Surface((40, 50))
-		surface.fill(main.RED)
+		surface = pygame.image.load("sprites/enemy_normal.png").convert_alpha() #40 X 50
 		Enemy.__init__(self, game, pos, surface)
 
 class Shooty(Enemy):
 	"""Moves slower and shoots more than usual"""
 	speed=1
 	def __init__(self, game, pos):
-		self.surface = pygame.Surface((40, 40))
-		self.surface.fill(main.BLUE)
+		self.surface = pygame.image.load("sprites/enemy_shooty.png").convert_alpha() #40 X 40
 		Enemy.__init__(self, game, pos, self.surface)
 
 	def update_position(self):

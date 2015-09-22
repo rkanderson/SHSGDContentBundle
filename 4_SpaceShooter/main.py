@@ -211,8 +211,9 @@ class Player:
 	time_between_shots=10
 	def __init__(self, game):
 		self.game=game
-		self.width=50
-		self.height=40
+		self.surface = pygame.image.load("sprites/player.png").convert_alpha() #50 X 40
+		self.width=self.surface.get_width()
+		self.height=self.surface.get_height()
 		self.x=screen_dimensions[0]/2-self.width/2
 		self.y=600
 		self.side_to_side_speed = 7
@@ -256,7 +257,7 @@ class Player:
 		if self.is_dead: self.explode()
 
 	def draw(self, camera):
-		camera.draw_rect(self.rect, BLUE)
+		camera.blit_surface(self.surface, (self.x, self.y))
 
 	def explode(self):
 		#spawn explosion at coordinates?
@@ -296,8 +297,9 @@ class Player:
 """
 class Torpedo:
 	"""Those cool things the player fires."""
-	height=20
-	width=10
+	surface=pygame.image.load("sprites/torpedo.png").convert_alpha()
+	height=surface.get_height()
+	width=surface.get_width()
 	speed=10
 	def __init__(self, game, pos):
 		self.game=game
@@ -331,7 +333,7 @@ class Torpedo:
 					particles.ParticleManager.make_explosion((self.rect.centerx, self.rect.centery), 10)
 
 	def draw(self, camera):
-		camera.draw_rect(self.rect, LIGHTER_BLUE)
+		camera.blit_surface(self.surface, (self.x, self.y))
 
 """
  __  __ _         _ _      
@@ -344,8 +346,9 @@ class Torpedo:
 """
 class Missile:
 	"""Those nasty things Aliens shoot."""
-	width=10
-	height=20
+	surface=pygame.image.load("sprites/missile.png").convert_alpha()
+	width=surface.get_width()
+	height=surface.get_height()
 	speed=7
 	def __init__(self, game, pos):
 		self.game=game
@@ -359,7 +362,7 @@ class Missile:
 			self.game.player.is_dead=True #BOOM u dead
 			self.game.missiles.remove(self)
 	def draw(self, camera):
-		camera.draw_rect(self.rect, LIGHTER_RED)
+		camera.blit_surface(self.surface, (self.x, self.y))
 
 """
  ____             _                                   _ 
