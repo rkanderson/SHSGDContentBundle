@@ -31,7 +31,10 @@ def main():
 		game.update(EVENTS) # update game state
 		game.draw(DISPLAYSURF) # draw game
 
-		FPSCLOCK.tick(FPS) # pause a few milliseconds (1/FPS seconds)
+		FPSCLOCK.tick(FPS) # pause a few milliseconds to
+						   # get a desired framerate
+
+	pygame.quit() #Quits after the main game loop is over
 
 class Game:
 	"""Top of class hierarchy; the godly class."""
@@ -40,10 +43,14 @@ class Game:
 		pass
 	def update(self, events):
 		"""Updates game state."""
+		"""<------------------------------------Code to update game state each frame goes here!"""
 		pass
 	def draw(self, screen):
 		"""Draws itself on given screen."""
-		pass
+		screen.fill((0, 0, 0)) # Erase everything already on screen
+		"""Code here! :D """ """<------------------------------------Code to draw the game goes here!"""
+		pygame.display.update()
+
 
 
 # More classes get defined down here. Lower in hierarchy.
